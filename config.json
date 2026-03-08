@@ -1,0 +1,25 @@
+{
+	"name": {
+		"en": "SCI DAQ",
+		"el": "SCI DAQ"
+	},
+	"description": {
+		"en": "SCI DAQ for Mind+",
+		"el": "SCI DAQ for Mind+ "
+	},
+	"author": "wallia",
+	"email": "v.vallianos@gmail.com",
+	"license": "MIT",
+	"isBoard": false,
+	"id": "sciDaq",
+	"version": "0.0.1",
+	"platform": ["win"],
+	"asset": {
+		"arduinoC": {
+			"dir": "arduinoC/",
+			"version": "0.0.1",
+			"board": ["arduino"],
+			"main": "main.ts"
+		}
+	}
+}
