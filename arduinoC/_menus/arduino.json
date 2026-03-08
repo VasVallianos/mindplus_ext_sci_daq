@@ -1,0 +1,41 @@
+{
+	"Y": {
+		"menu": [
+			[
+				"1",
+				"0"
+			],
+			[
+				"2",
+				"1"
+			]
+		],
+		"default_LCD1602RGB": "1"
+	},
+	"VER": {
+		"menu": [
+			[
+				"V1",
+				"1"
+			],
+			[
+				"V2",
+				"2"
+			]
+		],
+		"default_LCD1602RGB": "1"
+	},
+	"LR": {
+		"menu": [
+			[
+				"Left",
+				"Left"
+			],
+			[
+				"Right",
+				"Right"
+			]
+		],
+		"default_LCD1602RGB": "Left"
+	}
+}

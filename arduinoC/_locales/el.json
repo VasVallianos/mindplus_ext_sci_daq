@@ -1,0 +1,6 @@
+{
+    "sciDAQ.sciDaqInit|block": "Αρχικοποίηση του sciDAQ ",
+    "sciDAQ.getTempValue|block": "Διάβασε την τιμή της θερμοκρασίας στην ψηφιακή πόρτα [PORT]",
+    "sciDAQ.getHumValue|block": "Διάβασε την τιμή της σχετικής υγρασίας στην ψηφιακή πόρτα [PORT]",
+    "sciDAQ.getAmbLightValue|block": "Διάβασε την τιμή του ατμοσφαιρικού φωτισμού στην ψηφιακή πόρτα [PORT]"
+}
