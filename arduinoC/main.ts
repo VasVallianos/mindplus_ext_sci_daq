@@ -10,13 +10,6 @@ enum PORTS {
     ePort3
 }
 
-enum DPORTS {
-    //% block="Port2"
-    ePort2,
-	 //% block="Port3"
-    ePort3
-}
-
 //% color="#679ca3" iconWidth=50 iconHeight=40
 namespace sciDAQ{
     //% block="Αρχικοποίηση του sciDAQ " blockType="command" 
@@ -45,18 +38,8 @@ namespace sciDAQ{
 		}
 	}
 	
-	//% block="Διάβασε την τιμή του ασισθητήρα στην πόρτα [PORT]" blockType="reporter"
-	//% PORT.shadow="dropdown" PORT.options="PORTS" 
-	//% weight=90
-	//export function getValues(parameter: any, block: any) {
-	//	if(Generator.board === 'arduino'){
-	//		let port = parameter.PORT.code;
-	//		Generator.addCode(`sci.getValues(sci.${port})`);
-	//	}
-	//}
-	
-	//% block="Διάβασε την τιμή της θερμοκρασίας στην ψηφιακή πόρτα [PORT]" blockType="reporter"
-	//% PORT.shadow="dropdown" PORT.options="DPORTS" 
+	//% block="Διάβασε την τιμή της θερμοκρασίας στην πόρτα [PORT]" blockType="reporter"
+	//% PORT.shadow="dropdown" PORT.options="PORTS" PORT.defl="PORTS.eALL"
 	//% weight=90
 	export function getTempValue(parameter: any, block: any) {
 		if(Generator.board === 'arduino'){
@@ -65,8 +48,8 @@ namespace sciDAQ{
 		}
 	}
 	
-	//% block="Διάβασε την τιμή της σχετικής υγρασίας στην ψηφιακή πόρτα [PORT]" blockType="reporter"
-	//% PORT.shadow="dropdown" PORT.options="DPORTS" 
+	//% block="Διάβασε την τιμή της σχετικής υγρασίας στην πόρτα [PORT]" blockType="reporter"
+	//% PORT.shadow="dropdown" PORT.options="PORTS" PORT.defl="PORTS.eALL" 
 	//% weight=90
 	export function getHumValue(parameter: any, block: any) {
 		if(Generator.board === 'arduino'){
@@ -75,13 +58,77 @@ namespace sciDAQ{
 		}
 	}
 	
-	//% block="Διάβασε την τιμή του ατμοσφαιρικού φωτισμού στην ψηφιακή πόρτα [PORT]" blockType="reporter"
-	//% PORT.shadow="dropdown" PORT.options="DPORTS" 
+	//% block="Διάβασε την τιμή του ατμοσφαιρικού φωτισμού στην πόρτα [PORT]" blockType="reporter"
+	//% PORT.shadow="dropdown" PORT.options="PORTS" PORT.defl="PORTS.eALL" 
 	//% weight=90
 	export function getAmbLightValue(parameter: any, block: any) {
 		if(Generator.board === 'arduino'){
 			let port = parameter.PORT.code;
 			Generator.addCode(`sci.getValue(sci.${port},"Light").toFloat()`);
+		}
+	}
+	
+	//% block="Διάβασε τον δείκτη ποιότητας αέρα AQI στην πόρτα [PORT]" blockType="reporter"
+	//% PORT.shadow="dropdown" PORT.options="PORTS" PORT.defl="PORTS.eALL"
+	//% weight=90
+	export function getAQI(parameter: any, block: any) {
+		if (Generator.board === 'arduino') {
+			let port = parameter.PORT.code;
+			Generator.addCode(`sci.getValue(sci.${port}, "AQI").toInt()`);
+		}
+	}
+	
+	//% block="Διάβασε τον δείκτη TVOC σε ppb στην πόρτα [PORT]" blockType="reporter"
+	//% PORT.shadow="dropdown" PORT.options="PORTS" PORT.defl="PORTS.eALL"
+	//% weight=90
+	export function getTVOC(parameter: any, block: any) {
+		if (Generator.board === 'arduino') {
+			let port = parameter.PORT.code;
+			Generator.addCode(`sci.getValue(sci.${port}, "TVOC").toInt()`);
+		}
+	}
+
+	//% block="Διάβασε τον δείκτη eCO2 σε ppm στην πόρτα [PORT]" blockType="reporter"
+	//% PORT.shadow="dropdown" PORT.options="PORTS" PORT.defl="PORTS.eALL"
+	//% weight=90
+	export function getCO2(parameter: any, block: any) {
+		if (Generator.board === 'arduino') {
+			let port = parameter.PORT.code;
+			Generator.addCode(`sci.getValue(sci.${port}, "ECO2").toInt()`);
+		}
+	}
+
+	//% block="Διάβασε την περιγραφή του δείκτη ποιότητας αέρα AQI στην πόρτα [PORT]" blockType="reporter"
+	//% PORT.shadow="dropdown" PORT.options="PORTS" PORT.defl="PORTS.eALL"
+	//% weight=90
+	export function getAQIDescription(parameter: any, block: any) {
+		if (Generator.board === 'arduino') {
+			let port = parameter.PORT.code;
+			Generator.addInclude("sci_aqi_desc_fn",
+				`String sci_aqi_desc(int aqi) {\n` +
+				`  switch (aqi) {\n` +
+				`    case 1: return "Εξαιρετική";\n` +
+				`    case 2: return "Καλή";\n` +
+				`    case 3: return "Μέτρια";\n` +
+				`    case 4: return "Κακή";\n` +
+				`    case 5: return "Ανθυγιεινή";\n` +
+				`    default: return "Αναμονή...";\n` +
+				`  }\n` +
+				`}`
+			);
+			Generator.addCode(`sci_aqi_desc(sci.getValue(sci.${port}, "AQI").toInt())`);
+		}
+	}
+	
+	//% block="Διάβασε την τιμή του [NAME] στο sciDAQ (επιστρέφει String) στην πόρτα [PORT]" blockType="reporter"
+	//% PORT.shadow="dropdown" PORT.options="PORTS" PORT.defl="PORTS.eALL"
+	//% NAME.shadow="string" NAME.defl="AQI"
+	//% weight=90
+	export function getSciValue(parameter: any, block: any) {
+		let name = parameter.NAME.code;
+		if (Generator.board === 'arduino') {
+			let port = parameter.PORT.code;
+			Generator.addCode(`sci.getValue(sci.${port}, ${name})`);
 		}
 	}
 }

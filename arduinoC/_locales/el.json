@@ -1,6 +1,12 @@
 {
     "sciDAQ.sciDaqInit|block": "Αρχικοποίηση του sciDAQ ",
-    "sciDAQ.getTempValue|block": "Διάβασε την τιμή της θερμοκρασίας στην ψηφιακή πόρτα [PORT]",
-    "sciDAQ.getHumValue|block": "Διάβασε την τιμή της σχετικής υγρασίας στην ψηφιακή πόρτα [PORT]",
-    "sciDAQ.getAmbLightValue|block": "Διάβασε την τιμή του ατμοσφαιρικού φωτισμού στην ψηφιακή πόρτα [PORT]"
+    "sciDAQ.getTempValue|block": "Διάβασε την τιμή της θερμοκρασίας στην πόρτα [PORT]",
+    "sciDAQ.getHumValue|block": "Διάβασε την τιμή της σχετικής υγρασίας στην πόρτα [PORT]",
+    "sciDAQ.getAmbLightValue|block": "Διάβασε την τιμή του ατμοσφαιρικού φωτισμού στηnνπόρτα [PORT]"
+	"sciDAQ.getAQI|block": "Διάβασε τον δείκτη ποιότητας αέρα AQI στην πόρτα [PORT]" ,
+    "sciDAQ.getTVOC|block": "Διάβασε τον δείκτη TVOC σε ppb στην πόρτα [PORT]",
+    "sciDAQ.getCO2|block": "Διάβασε τον δείκτη eCO2 σε ppm στην πόρτα [PORT]",
+    "sciDAQ.getAQIDescription|block": "Διάβασε την περιγραφή του δείκτη ποιότητας αέρα AQI στην πόρτα [PORT]",
+	"sciDAQ.getSciValue|block": "Διάβασε την τιμή του [NAME] στο sciDAQ (επιστρέφει String) στην πόρτα [PORT]",
+
 }
