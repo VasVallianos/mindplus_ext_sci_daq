@@ -107,12 +107,12 @@ namespace sciDAQ{
 			Generator.addInclude("sci_aqi_desc_fn",
 				`String sci_aqi_desc(int aqi) {\n` +
 				`  switch (aqi) {\n` +
-				`    case 1: return "Εξαιρετική";\n` +
-				`    case 2: return "Καλή";\n` +
-				`    case 3: return "Μέτρια";\n` +
-				`    case 4: return "Κακή";\n` +
-				`    case 5: return "Ανθυγιεινή";\n` +
-				`    default: return "Αναμονή...";\n` +
+				`    case 1: return "Excellent";\n` +
+				`    case 2: return "Good";\n` +
+				`    case 3: return "Moderate";\n` +
+				`    case 4: return "Bad";\n` +
+				`    case 5: return "Unhealthy ";\n` +
+				`    default: return "Wait...";\n` +
 				`  }\n` +
 				`}`
 			);
